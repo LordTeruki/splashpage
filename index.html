@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computus</title>
+  <meta
+    name="description"
+    content="Independent cloud infrastructure. Private compute, storage, and networking. Built and operated on our own infrastructure."
+  />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --panel: rgba(255, 255, 255, 0.03);
+      --panel-border: rgba(255, 255, 255, 0.08);
+      --text: #f5f5f5;
+      --muted: #a3a3a3;
+      --accent: #ff8a3d;
+      --accent-soft: rgba(255, 138, 61, 0.14);
+      --maxw: 1200px;
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 40%),
+        radial-gradient(circle at top left, rgba(255, 138, 61, 0.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.04), transparent 22%),
+        linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
+    }
+
+    .wrap {
+      width: min(calc(100% - 32px), var(--maxw));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 28px 0 64px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-radius: 50%;
+    }
+
+    .brand-name {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .status {
+      border: 1px solid var(--panel-border);
+      background: rgba(255,255,255,0.02);
+      color: var(--muted);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+    }
+
+    .hero-minimal {
+      text-align: center;
+      padding: 80px 20px;
+      margin-bottom: 34px;
+      border-radius: 28px;
+      border: 1px solid var(--panel-border);
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,0.03), transparent 45%),
+        rgba(255,255,255,0.01);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .hero-logo {
+      width: 120px;
+      margin-bottom: 30px;
+      opacity: 0.95;
+      display: inline-block;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(255, 138, 61, 0.22);
+      color: #ffd3b8;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .sub {
+      max-width: 700px;
+      margin: 0 auto;
+      color: #dddddd;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 650;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: #101010;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      border-color: var(--panel-border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.07);
+      transform: translateY(-1px);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      backdrop-filter: blur(8px);
+    }
+
+    .card h2,
+    .card h3 {
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .offerings {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .offering {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .offering-title {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .offering p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.65;
+    }
+
+    .footer {
+      padding: 26px 0 42px;
+      color: #8b8b8b;
+      font-size: 0.92rem;
+    }
+
+    .footer a {
+      color: #cfcfcf;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .grid,
+      .offerings {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+        padding-top: 18px;
+      }
+
+      .hero-minimal {
+        padding: 56px 20px;
+      }
+
+      .hero-logo {
+        width: 96px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <div class="wrap">
+      <div class="topbar">
+        <a class="brand" href="/">
+          <img src="logo.png" alt="Computus logo" />
+          <span class="brand-name">COMPUTUS</span>
+        </a>
+        <div class="status">Launching soon</div>
+      </div>
+
+      <section class="hero-minimal">
+        <div class="eyebrow">Independent cloud infrastructure</div>
+
+
+        <h1>Built on infrastructure we own and operate.</h1>
+
+        <p class="sub">
+          Computus is building private compute, storage, and networking
+          on independently operated physical infrastructure — not resold
+          capacity from hyperscalers.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="/cdn-cgi/l/email-protection#bbd2d5ddd4fbd8d4d6cbcecfcec895d2d4">Contact us</a>
+          <a class="btn btn-secondary" href="https://x.com/computusio" target="_blank" rel="noopener noreferrer">Follow on X</a>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <h2>Why Computus</h2>
+          <p>
+            We are building a cloud platform with direct control over the
+            physical layer. That means fewer dependencies, clearer operations,
+            and infrastructure designed to serve a broad range of lawful use
+            cases without arbitrary platform behavior.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Coming soon</h2>
+          <p>
+            Early offerings will include virtual compute, S3-compatible object
+            storage, private networking, dedicated deployments, and GPU-ready
+            infrastructure for demanding workloads.
+          </p>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top: 18px;">
+        <h2>Planned offerings</h2>
+        <div class="offerings">
+          <div class="offering">
+            <div class="offering-title">Cloud Instances</div>
+            <p>Flexible virtual machines for applications, services, self-hosted workloads, and development environments.</p>
+          </div>
+          <div class="offering">
+            <div class="offering-title">Object Storage</div>
+            <p>S3-compatible storage for backups, archives, media, datasets, and application data.</p>
+          </div>
+          <div class="offering">
+            <div class="offering-title">Private Networking</div>
+            <p>Secure internal networking for isolated workloads, service-to-service communication, and private deployments.</p>
+          </div>
+          <div class="offering">
+            <div class="offering-title">Dedicated Infrastructure</div>
+            <p>Single-tenant infrastructure for customers who need predictability, control, and custom deployment options.</p>
+          </div>
+          <div class="offering">
+            <div class="offering-title">GPU Compute</div>
+            <p>Accelerated infrastructure for inference, model experimentation, data processing, and other high-performance workloads.</p>
+          </div>
+          <div class="offering">
+            <div class="offering-title">Launch Access</div>
+            <p>Initial access will be limited while the platform comes online. Early inquiries are welcome.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">
+        <div>Computus is a service of Penetrum LLC.</div>
+        <div style="margin-top: 6px;">
+          Contact: <a href="/cdn-cgi/l/email-protection#c6afa8a0a986a5a9abb6b3b2b3b5e8afa9"><span class="__cf_email__" data-cfemail="fc95929a93bc9f93918c8988898fd29593">[email&#160;protected]</span></a>
+        </div>
+      </div>
+    </div>
+  </main>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"56d74e439f0a4a5b8dd18b0823f36064","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
