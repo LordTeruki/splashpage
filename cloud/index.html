@@ -14,11 +14,13 @@
       --muted: #a3a3a3;
       --accent: #ff8a3d;
       --accent-soft: rgba(255, 138, 61, 0.14);
-      --maxw: 1200px;
+      --maxw: 1350px;
       --radius: 24px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     html, body {
       margin: 0;
@@ -124,7 +126,7 @@
 
     .categories {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
       margin-top: 18px;
     }
@@ -135,7 +137,7 @@
       border: 1px solid var(--panel-border);
       border-radius: var(--radius);
       padding: 30px;
-      min-height: 420px;
+      min-height: 460px;
       display: flex;
       flex-direction: column;
       position: relative;
@@ -241,7 +243,7 @@
       text-decoration: none;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1100px) {
       .categories {
         grid-template-columns: 1fr;
       }
@@ -257,103 +259,141 @@
         padding: 56px 20px;
       }
 
-      .categories {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 18px;
-}
-
-@media (max-width: 950px) {
-  .categories {
-    grid-template-columns: 1fr;
-  }
-}
+      .category {
+        min-height: auto;
+        padding: 24px;
+      }
     }
   </style>
 </head>
 
 <body>
+
   <main class="wrap">
+
     <div class="topbar">
       <a class="brand" href="/">
         <img src="/logo.png" alt="Computus logo" />
         <span class="brand-name">COMPUTUS</span>
       </a>
-      <div class="status">Cloud Services</div>
+
+      <div class="status">
+        Cloud Services
+      </div>
     </div>
 
     <section class="hero">
-      <div class="eyebrow">Independent cloud infrastructure</div>
-      <h1>Choose your infrastructure.</h1>
+
+      <div class="eyebrow">
+        Independent cloud infrastructure
+      </div>
+
+      <h1>
+        Choose your infrastructure.
+      </h1>
+
       <p class="sub">
-        Computus provides storage and dedicated compute on infrastructure we own
-        and operate. Start simple today, then scale into larger deployments as your
-        workload grows.
+        Computus provides storage, dedicated compute, and private networking
+        on infrastructure we own and operate. Start simple today, then scale
+        into larger deployments as your workload grows.
       </p>
+
     </section>
 
     <section class="categories">
-  <article class="category">
-    <div class="icon">▣</div>
-    <h2>Object Storage</h2>
-    <p>
-      S3-compatible storage for backups, archives, media, datasets, and
-      application data. Flat monthly pricing with human-supported provisioning.
-    </p>
 
-    <ul class="features">
-      <li>1TB, 5TB, and 10TB monthly plans</li>
-      <li>S3-compatible endpoint</li>
-      <li>No ingress/egress fees</li>
-      <li>Provisioned within 24 hours</li>
-    </ul>
+      <!-- OBJECT STORAGE -->
 
-    <a class="btn btn-primary" href="/object-storage/">
-      View storage plans
-    </a>
-  </article>
+      <article class="category">
 
-  <article class="category">
-    <div class="icon">◈</div>
-    <h2>Bare Metal Hosting</h2>
-    <p>
-      Dedicated physical servers for customers who need predictable performance,
-      direct hardware access, and single-tenant infrastructure.
-    </p>
+        <div class="icon">
+          ▣
+        </div>
 
-    <ul class="features">
-      <li>Dedicated server access</li>
-      <li>Static public IP options</li>
-      <li>Linux installation available</li>
-      <li>Custom hardware availability</li>
-    </ul>
+        <h2>
+          Object Storage
+        </h2>
 
-    <a class="btn btn-secondary" href="/baremetal/">
-      View bare metal
-    </a>
-  </article>
+        <p>
+          S3-compatible storage for backups, archives, media, datasets,
+          and application data. Flat monthly pricing with human-supported
+          provisioning.
+        </p>
 
-  <article class="category">
-    <div class="icon">◇</div>
-    <h2>Dedicated VPN</h2>
-    <p>
-      Private VPN access for secure remote connectivity, infrastructure
-      management, and isolated customer environments.
-    </p>
+        <ul class="features">
+          <li>1TB, 5TB, and 10TB monthly plans</li>
+          <li>S3-compatible endpoint</li>
+          <li>No egress fees</li>
+          <li>Provisioned within 24 hours</li>
+        </ul>
 
-    <ul class="features">
-      <li>Dedicated VPN tunnel</li>
-      <li>Private customer access</li>
-      <li>Static endpoint options</li>
-      <li>Provisioned within 24 hours</li>
-    </ul>
+        <a class="btn btn-primary" href="/object-storage/">
+          View storage plans
+        </a>
 
-    <a class="btn btn-secondary" href="/dedicated-vpn/">
-      View VPN plans
-    </a>
-  </article>
-</section>
+      </article>
+
+      <!-- BARE METAL -->
+
+      <article class="category">
+
+        <div class="icon">
+          ◈
+        </div>
+
+        <h2>
+          Bare Metal Hosting
+        </h2>
+
+        <p>
+          Dedicated physical servers for customers who need predictable
+          performance, direct hardware access, and single-tenant infrastructure.
+        </p>
+
+        <ul class="features">
+          <li>Dedicated server access</li>
+          <li>Static public IP options</li>
+          <li>Linux installation available</li>
+          <li>Custom hardware availability</li>
+        </ul>
+
+        <a class="btn btn-secondary" href="/baremetal/">
+          View bare metal
+        </a>
+
+      </article>
+
+      <!-- VPN -->
+
+      <article class="category">
+
+        <div class="icon">
+          ◇
+        </div>
+
+        <h2>
+          Dedicated VPN
+        </h2>
+
+        <p>
+          Private VPN access for secure remote connectivity, infrastructure
+          management, and isolated customer environments.
+        </p>
+
+        <ul class="features">
+          <li>Dedicated VPN tunnel</li>
+          <li>Private customer access</li>
+          <li>Static endpoint options</li>
+          <li>Provisioned within 24 hours</li>
+        </ul>
+
+        <a class="btn btn-secondary" href="/dedicated-vpn/">
+          View VPN plans
+        </a>
+
+      </article>
+
+    </section>
 
     <p class="note">
       Orders are manually reviewed and provisioned by our engineering team.
@@ -361,11 +401,19 @@
     </p>
 
     <div class="footer">
-      <div>Computus is a service of Penetrum LLC.</div>
+      <div>
+        Computus is a service of Penetrum LLC.
+      </div>
+
       <div style="margin-top: 6px;">
-        Contact: <a href="mailto:info@computus.io">info@computus.io</a>
+        Contact:
+        <a href="mailto:info@computus.io">
+          info@computus.io
+        </a>
       </div>
     </div>
+
   </main>
+
 </body>
 </html>
