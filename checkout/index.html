@@ -1,20 +1,227 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Computus Checkout</title>
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --panel: rgba(255, 255, 255, 0.04);
+      --panel-border: rgba(255, 255, 255, 0.09);
+      --text: #f5f5f5;
+      --muted: #a3a3a3;
+      --accent: #ff8a3d;
+      --accent-soft: rgba(255, 138, 61, 0.14);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(255, 138, 61, 0.12), transparent 30%),
+        radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 40%),
+        linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    .card {
+      width: min(100%, 760px);
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius);
+      padding: 36px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .brand-name {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(255, 138, 61, 0.22);
+      color: #ffd3b8;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.1rem, 5vw, 3.4rem);
+      letter-spacing: -0.04em;
+    }
+
+    p {
+      color: #d8d8d8;
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    .details {
+      margin-top: 26px;
+      border: 1px solid var(--panel-border);
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(0,0,0,0.22);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 16px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--panel-border);
+    }
+
+    .row:last-child { border-bottom: 0; }
+
+    .label {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .value {
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      overflow-wrap: anywhere;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: #101010;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--panel-border);
+      color: var(--text);
+    }
+
+    .note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 640px) {
+      .card { padding: 24px; }
+      .row { grid-template-columns: 1fr; gap: 4px; }
+    }
+  </style>
 </head>
-<body style="background:#050505;color:white;font-family:Arial;padding:40px;">
-  <h1>Order received</h1>
-  <p>Your Computus service is now in the provisioning queue.</p>
-  <p>Please allow up to 24 hours for setup and validation.</p>
+
+<body>
+  <main class="card">
+    <div class="brand">
+      <img src="/logo.png" alt="Computus logo" />
+      <div class="brand-name">COMPUTUS</div>
+    </div>
+
+    <div class="badge">Payment successful</div>
+
+    <h1>Order received.</h1>
+
+    <p>
+      Your Computus service is now in the provisioning queue.
+      Most orders are completed the same day, but please allow up to 24 hours
+      for setup and validation.
+    </p>
+
+    <div class="details">
+      <div class="row">
+        <div class="label">Checkout status</div>
+        <div class="value" id="checkoutStatus">Loading...</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Payment ID</div>
+        <div class="value" id="paymentId">Loading...</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Receipt ID</div>
+        <div class="value" id="receiptId">Loading...</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Order reference</div>
+        <div class="value" id="stateId">Loading...</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="/">Return to Computus</a>
+      <a class="btn btn-secondary" href="mailto:info@computus.io">Contact support</a>
+    </div>
+
+    <p class="note">
+      Keep this page or save your payment ID for your records. You will receive
+      access details after provisioning is complete.
+    </p>
+  </main>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const status = params.get("status");
-    const paymentId = params.get("payment_id");
 
-    console.log("Checkout status:", status);
-    console.log("Payment ID:", paymentId);
+    const checkoutStatus = params.get("checkout_status") || params.get("status") || "received";
+    const paymentId = params.get("payment_id") || "Not provided";
+    const receiptId = params.get("receipt_id") || "Not provided";
+    const stateId = params.get("state_id") || "Not provided";
+
+    document.getElementById("checkoutStatus").textContent = checkoutStatus;
+    document.getElementById("paymentId").textContent = paymentId;
+    document.getElementById("receiptId").textContent = receiptId;
+    document.getElementById("stateId").textContent = stateId;
   </script>
 </body>
 </html>
