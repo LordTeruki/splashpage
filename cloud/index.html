@@ -257,10 +257,18 @@
         padding: 56px 20px;
       }
 
-      .category {
-        min-height: auto;
-        padding: 24px;
-      }
+      .categories {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+@media (max-width: 950px) {
+  .categories {
+    grid-template-columns: 1fr;
+  }
+}
     }
   </style>
 </head>
