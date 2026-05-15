@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Computus Checkout</title>
+</head>
+<body style="background:#050505;color:white;font-family:Arial;padding:40px;">
+  <h1>Order received</h1>
+  <p>Your Computus service is now in the provisioning queue.</p>
+  <p>Please allow up to 24 hours for setup and validation.</p>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get("status");
+    const paymentId = params.get("payment_id");
+
+    console.log("Checkout status:", status);
+    console.log("Payment ID:", paymentId);
+  </script>
+</body>
+</html>
