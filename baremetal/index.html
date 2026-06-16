@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Computus | Bare-Metal Hosting</title>
 
   <meta
@@ -84,7 +84,7 @@
 
     .status {
       border: 1px solid var(--panel-border);
-      background: rgba(255,255,255,0.02);
+      background: rgba(255,255,255,.02);
       color: var(--muted);
       padding: 8px 14px;
       border-radius: 999px;
@@ -132,8 +132,8 @@
     .cta-row {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
       gap: 14px;
+      flex-wrap: wrap;
       margin-top: 28px;
     }
 
@@ -156,7 +156,17 @@
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      opacity: 0.95;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--panel-border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.07);
+      transform: translateY(-1px);
     }
 
     .offerings {
@@ -202,25 +212,10 @@
       text-decoration: none;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width:900px) {
       .offerings,
       .grid {
         grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .topbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero {
-        padding-top: 18px;
-      }
-
-      .card {
-        padding: 20px;
       }
     }
   </style>
@@ -229,183 +224,151 @@
 <body>
 
 <main class="hero">
-  <div class="wrap">
+<div class="wrap">
 
-    <div class="topbar">
-      <a class="brand" href="https://computus.io">
-        <img src="logo.png" alt="Computus logo">
-        <span class="brand-name">COMPUTUS</span>
-      </a>
+<div class="topbar">
+  <a class="brand" href="https://computus.io">
+    <img src="logo.png" alt="Computus logo">
+    <span class="brand-name">COMPUTUS</span>
+  </a>
 
-      <div class="status">
-        Private bare-metal hosting available
-      </div>
+  <div class="status">
+    Private bare-metal hosting available
+  </div>
+</div>
+
+<section class="card" style="margin-bottom:18px;text-align:center;">
+
+  <div class="eyebrow">
+    Dedicated Infrastructure
+  </div>
+
+  <h1>
+    Bare-Metal Hosting
+  </h1>
+
+  <p style="max-width:700px;margin:0 auto;">
+    Flat monthly pricing with no bandwidth meters or transfer quotas.
+    Every server includes one public IPv4 address. Additional IPv4 addresses
+    are available for $5 per month. Linux and Proxmox VE deployments are
+    available with full SSH access.
+  </p>
+
+  <div class="cta-row">
+
+    <a
+      class="btn btn-primary"
+      href="mailto:info@computus.io?subject=Server%20Request&body=Hello,%0D%0A%0D%0AI%20would%20like%20more%20information%20about%20the%20following%20server:%0D%0A%0D%0AServer:%20%0D%0AOperating%20System:%20Linux%20/%20Proxmox%0D%0AAdditional%20IPv4%20Addresses:%20%0D%0AExpected%20Use:%20%0D%0A%0D%0AThank%20you."
+    >
+      Request a Server
+    </a>
+
+    <a class="btn btn-secondary" href="https://computus.io">
+      Back to Main Site
+    </a>
+
+  </div>
+
+</section>
+
+<section class="card">
+
+  <h2>Dedicated Bare-Metal Servers</h2>
+
+  <div class="offerings">
+
+    <div class="offering">
+      <div class="offering-title">Dell PowerEdge R640</div>
+      2 × Xeon Gold 6130<br>
+      256GB RAM<br>
+      6TB SAS Storage
+      <div class="price">$225/month</div>
     </div>
 
-    <section class="card" style="margin-bottom:18px;text-align:center;">
+    <div class="offering">
+      <div class="offering-title">Dell PowerEdge R740xd</div>
+      2 × Xeon Gold 6132<br>
+      256GB RAM<br>
+      9.6TB SAS Storage
+      <div class="price">$275/month</div>
+    </div>
 
-      <div class="eyebrow">
-        Dedicated Infrastructure
-      </div>
+    <div class="offering">
+      <div class="offering-title">Dell PowerEdge R740xd Storage</div>
+      2 × Xeon Gold 6132<br>
+      256GB RAM<br>
+      40TB SAS Storage
+      <div class="price">$375/month</div>
+    </div>
 
-      <h1>
-        Bare-Metal Hosting
-      </h1>
+    <div class="offering">
+      <div class="offering-title">HP DL360 Gen9</div>
+      2 × Xeon E5-2680<br>
+      256GB RAM<br>
+      6TB SAS Storage
+      <div class="price">$175/month</div>
+    </div>
 
-      <p style="max-width:700px;margin:0 auto;">
-        Flat monthly pricing with no bandwidth meters or transfer quotas.
-        Every server includes one public IPv4 address. Additional IPv4
-        addresses are available for $5 per month. Linux and Proxmox VE
-        deployments are available with full SSH access.
-      </p>
+    <div class="offering">
+      <div class="offering-title">HP DL380 Gen9</div>
+      2 × Xeon E5-2660<br>
+      128GB RAM<br>
+      4TB SAS Storage
+      <div class="price">$125/month</div>
+    </div>
 
-      <div class="cta-row">
-        <a class="btn btn-primary" href="mailto:info@computus.io">
-          Request a Server
-        </a>
-      </div>
-
-    </section>
-
-    <section class="card" style="margin-top:18px;">
-
-      <h2>Dedicated Bare-Metal Servers</h2>
-
-      <div class="offerings">
-
-        <div class="offering">
-          <div class="offering-title">
-            Dell PowerEdge R640
-          </div>
-
-          2 × Xeon Gold 6130<br>
-          256GB RAM<br>
-          6TB SAS Storage
-
-          <div class="price">
-            $225/month
-          </div>
-        </div>
-
-        <div class="offering">
-          <div class="offering-title">
-            Dell PowerEdge R740xd
-          </div>
-
-          2 × Xeon Gold 6132<br>
-          256GB RAM<br>
-          9.6TB SAS Storage
-
-          <div class="price">
-            $275/month
-          </div>
-        </div>
-
-        <div class="offering">
-          <div class="offering-title">
-            Dell PowerEdge R740xd Storage
-          </div>
-
-          2 × Xeon Gold 6132<br>
-          256GB RAM<br>
-          40TB SAS Storage
-
-          <div class="price">
-            $375/month
-          </div>
-        </div>
-
-        <div class="offering">
-          <div class="offering-title">
-            HP DL360 Gen9
-          </div>
-
-          2 × Xeon E5-2680<br>
-          256GB RAM<br>
-          6TB SAS Storage
-
-          <div class="price">
-            $175/month
-          </div>
-        </div>
-
-        <div class="offering">
-          <div class="offering-title">
-            HP DL380 Gen9
-          </div>
-
-          2 × Xeon E5-2660<br>
-          128GB RAM<br>
-          4TB SAS Storage
-
-          <div class="price">
-            $125/month
-          </div>
-        </div>
-
-        <div class="offering">
-          <div class="offering-title">
-            Dell PowerEdge R630
-          </div>
-
-          2 × Xeon E5-2680<br>
-          128GB RAM<br>
-          3TB SAS Storage
-
-          <div class="price">
-            $150/month
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
-    <section class="grid">
-
-      <div class="card">
-
-        <h2>Included With Every Server</h2>
-
-        <p>
-          One public IPv4 address is included with every server. Additional IPv4
-          addresses are available for $5 per month. Full root access is provided
-          over SSH, and servers may be deployed with Ubuntu, Debian, Rocky Linux,
-          or Proxmox VE.
-        </p>
-
-      </div>
-
-      <div class="card">
-
-        <h2>Custom Deployments</h2>
-
-        <p>
-          Need additional storage, memory, networking, or a custom configuration?
-          Contact us. We operate our own infrastructure and can accommodate
-          requirements that larger cloud providers often cannot.
-        </p>
-
-      </div>
-
-    </section>
-
-    <div class="footer">
-
-      <div>
-        Computus is a service of Penetrum LLC.
-      </div>
-
-      <div style="margin-top:6px;">
-        Contact:
-        <a href="mailto:info@computus.io">
-          info@computus.io
-        </a>
-      </div>
-
+    <div class="offering">
+      <div class="offering-title">Dell PowerEdge R630</div>
+      2 × Xeon E5-2680<br>
+      128GB RAM<br>
+      3TB SAS Storage
+      <div class="price">$150/month</div>
     </div>
 
   </div>
+
+</section>
+
+<section class="grid">
+
+  <div class="card">
+    <h2>Included With Every Server</h2>
+
+    <p>
+      One public IPv4 address is included with every server. Additional IPv4
+      addresses are available for $5 per month. Full root access is provided
+      over SSH, and servers may be deployed with Ubuntu, Debian, Rocky Linux,
+      or Proxmox VE.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Custom Deployments</h2>
+
+    <p>
+      Need additional storage, memory, networking, or a custom configuration?
+      Contact us. Inventory is limited, and custom configurations are available.
+    </p>
+  </div>
+
+</section>
+
+<div class="footer">
+
+  <div>
+    Computus is a service of Penetrum LLC.
+  </div>
+
+  <div style="margin-top:6px;">
+    Contact:
+    <a href="mailto:info@computus.io">
+      info@computus.io
+    </a>
+  </div>
+
+</div>
+
+</div>
 </main>
 
 </body>
